@@ -1,0 +1,66 @@
+answer:
+
+function smallestDifferenceArray(N) {
+  // let arr = [];
+  // if (N % 2 === 1 && N >= 3) {
+  //   for (let i = 1; i < N; i += 2) {
+  //     arr.push(i, -i);
+  //   }
+  //   arr.push(0);
+  // } else {
+  //   for (let i = 1; i < N; i += 2) {
+  //     arr.push(i, -i);
+  //   }
+  //   for (let i = -2; i >= -N; i -= 2) {
+  //     arr.push(i, -i);
+  //   }
+  // }
+  // return arr.sort((a, b) => a - b);
+
+	let mid = N % 2 == 0 ? N / 2 : Math.floor(N / 2);
+  let arr = new Array(N);
+  let val = -mid;
+
+  // Fill the array with values
+  for (let i = 0; i < N; i++) {
+    if (i < mid) {
+      arr[i] = val++;
+    } else if (i == mid && N % 2 == 1) {
+      arr[i] = 0;
+    } else {
+      arr[i] = -arr[N - i - 1];
+    }
+  }
+
+  // Sort the array in ascending order
+  arr.sort(function(a, b){return a - b});
+
+  return arr;
+}
+
+
+var readline = require("readline").createInterface(process.stdin);
+
+let inputArr = [];
+var lineNumber = -1;
+
+readline.on("line", readInputs);
+
+function readInputs(line) {
+  inputArr.push(line);
+  lineNumber++;
+  if (lineNumber == 0) {
+    N = parseInt(inputArr[0]);
+    logic("s");
+    readline.close();
+  }
+  
+
+}
+
+function logic(input) {
+  console.log(smallestDifferenceArray(N).join(" "));
+}
+
+
+====================================================================
