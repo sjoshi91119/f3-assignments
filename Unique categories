@@ -1,0 +1,9 @@
+function uniqueCategories(arr) {
+
+	
+  const categories = new Set();
+  for (let i = 0; i < arr.length; i++) {
+    categories.add(arr[i][1]);
+  }
+  return [...categories];
+}
